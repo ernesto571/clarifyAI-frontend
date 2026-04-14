@@ -6,14 +6,17 @@ export default defineConfig(({ command }) => ({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000', // Change this to your actual backend port
+        target: 'http://localhost:3000',
         changeOrigin: true,
       },
     },
   },
+  build: {
+    sourcemap: false,
+    minify: 'terser' as const,
+  },
   plugins: [
     react(),
-    // obfuscator only runs during `vite build`, not `vite dev`
     command === 'build' && obfuscatorPlugin({
       options: {
         rotateStringArray: true,

@@ -21,6 +21,7 @@ interface FormData {
 
 interface AnalyzeStore {
     analysis: Analysis | null;
+    analysisId: number | null;
     formData: FormData;
     analysisLoading: boolean;
     error: string | null;
@@ -37,6 +38,7 @@ const initialFormData: FormData = {
 
 export const useAnalyzeStore = create<AnalyzeStore>((set) => ({
     analysis: null,
+    analysisId: null,
     formData: initialFormData,
     analysisLoading: false,
     error: null,
@@ -63,7 +65,7 @@ export const useAnalyzeStore = create<AnalyzeStore>((set) => ({
             }
 
             console.log("✅ analyzeDoc: success", res.data.analysis);
-            set({ analysis: res.data.analysis, analysisLoading: false });
+            set({ analysis: res.data.analysis, analysisId: res.data.id, analysisLoading: false });
         } catch (err: any) {
             console.error("🔴 analyzeDoc: failed", {
                 status: err.response?.status,

@@ -3,10 +3,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CTA (){
+    const navigate = useNavigate()
+
     const ref = useRef<HTMLElement>(null);
 
     useGSAP(() => {
@@ -32,7 +35,7 @@ export default function CTA (){
 
                 <p className="font-satoshi text-gray-300 ">No sign-up needed. Paste your docs and get answers in seconds.</p>
 
-                <button className="flex bg-primary tracking-wide rounded-lg transition  text-dark font-bold font-satoshi py-4 border-[3px] border-black hover:-translate-y-[1px] px-7 ">Analyze a Document for free<ArrowRight className="flex items-center size-6 pl-2 "/></button>
+                <button onClick={() => (navigate("/dashboard"))} className="flex bg-primary tracking-wide rounded-lg transition  text-dark font-bold font-satoshi py-4 border-[3px] border-black hover:-translate-y-[1px] px-7 ">Analyze a Document for free<ArrowRight className="flex items-center size-6 pl-2 "/></button>
             </main>
         </section>
     )

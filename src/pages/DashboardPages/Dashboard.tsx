@@ -9,6 +9,7 @@ import { handleCopy, handleExportPDF } from "../../lib/actions";
 import { useHistoryStore } from "../../store/HistoryStore";
 import { contractIcon, contractIconClass, formatAnalysisTime, redflagsCheckClass, redflagsCheckText, statusColor, statusIcon, tips } from "../../constants";
 import { useAuthStore } from "../../store/AuthStore";
+import { useDocStore } from "../../store/DocStore";
 
 const btn = "text-[0.75rem] py-1 px-3 rounded-xl font-semibold cursor-pointer transition-all"
 const title = "text-gray-400 font-semibold tracking-wide text-[0.7rem]"
@@ -50,15 +51,16 @@ export default function Dashboard(){
         {id: "Detailed", label: "Detailed", desc: "Professional legal analysis"},
         {id: "ELI5", label: "ELI5", desc: "Explain like I'm 5"},
     ];
-
+ 
 
     const actionBtn = [
         { id: "1", label: "📋 Copy", act: () => handleCopy(analysis!) },
-        { id: "2", label: "💾 Save", act: () => {} },
+        { id: "2", label: "💾 Save", act: () => {handleSaveDocumnet(analysisId)} },
         { id: "3", label: "🔥 Export", act: () => handleExportPDF(analysis!) },
     ]
 
-    const {formData, setFormData, analysisLoading, analyzeDoc, analysis} = useAnalyzeStore();
+    const {formData, setFormData, analysisLoading, analyzeDoc, analysisId, analysis} = useAnalyzeStore();
+    const { saveDoc } = useDocStore()
 
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -81,6 +83,12 @@ export default function Dashboard(){
         }
     };
 
+    const handleSaveDocumnet = (analysisId: number | null) => {
+        if (!user) return toast.error("Sign in to save analysis.");
+        if (!analysisId) return toast.error("No analysis to save.");
+        saveDoc(analysisId);
+    }
+
     useEffect (() => {
         fetchHistory()
     }, [] )
@@ -89,7 +97,7 @@ export default function Dashboard(){
         <section>
             <div className="grid md:grid-cols-3 lg:grid-cols-6 h-[92vh]">
                 <div className="hidden lg:grid sidebar">
-                    <Sidebar />
+                    <Sidebar /> 
                 </div>
                 <div className=" md:col-span-2 lg:col-span-4 gray flex-1 overflow-y-auto">
                     <section className="my-6 w-[94%] mx-auto">
@@ -174,7 +182,7 @@ export default function Dashboard(){
                         ) : (
                             analysis ? (
                                 <div className="pt-5 bg-white mt-3 mb-8 border border-gray-200 rounded-xl font-satoshi">
-                                    <div className="flex justify-between items-center font-cabinet px-5">
+                                    <div className="grid gap-3 md:gap-0 md:flex justify-between items-center font-cabinet px-5">
                                         <span className="flex items-center gap-3 tracking-tight font-semibold">
                                             <h1 className="text-gray-900">✦ Analysis Results</h1>
                                             <p className="green text-green rounded-xl p-1 px-2 text-sm">● Complete</p>
@@ -204,8 +212,8 @@ export default function Dashboard(){
                                         <p className="mt-1 leading-6 text-[0.8rem] text-gray-600 px-5" dangerouslySetInnerHTML={{ __html: analysis.ai_summary }} />
                                     </div>
 
-                                    <div className="grid grid-cols-2 px-5 py-2">
-                                        <section className="border-r border-gray-200 py-2">
+                                    <div className="grid lg:grid-cols-2 px-5 py-2">
+                                        <section className="lg:border-r border-gray-200 py-2">
                                             <span className="flex gap-2 text-green items-center">
                                                 <p>●</p>
                                                 <p className={`${title}`}>KEY POINTS</p>
@@ -219,7 +227,7 @@ export default function Dashboard(){
                                             </div>
                                         </section>
 
-                                        <section className="pl-5 py-2">
+                                        <section className="lg:pl-5 py-2">
                                             <span className="flex gap-2 text-red items-center">
                                                 <p>●</p>
                                                 <p className={`${title}`}>RED FLAGS</p>
@@ -242,7 +250,7 @@ export default function Dashboard(){
                                                 <span key={s.title} className="small border border-gray-200 rounded-xl">
                                                     <span className="flex justify-between items-center text-gray-900 text-[0.8rem] font-semibold py-2 gray border-b border-gray-200 px-4">
                                                         <p>{s.title}</p>
-                                                        <p className={`${statusColor(s.status)} tracking-tight rounded-xl p-1 px-2 text-[0.75rem]`}>{statusIcon(s.status)}</p>
+                                                        <p className={`${statusColor(s.status)} tracking-tight truncate rounded-xl p-1 px-2 text-[0.75rem]`}>{statusIcon(s.status)}</p>
                                                     </span>
                                                     <p className="text-[0.8rem] py-3 pl-4">{s.summary}</p>
                                                 </span>
