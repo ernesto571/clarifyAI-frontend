@@ -86,7 +86,7 @@ export default function ViewAnalysisModal({ onClose, analysis }: ViewAnalysisMod
                                 <span key={s.title} className="small border border-gray-200 rounded-xl">
                                     <span className="flex justify-between items-center text-gray-900 text-[0.8rem] font-semibold py-2 gray border-b border-gray-200 px-4">
                                         <p>{s.title}</p>
-                                        <p className={`${statusColor(s.status)} tracking-tight rounded-xl p-1 px-2 text-[0.75rem]`}>{statusIcon(s.status)}</p>
+                                        <p className={`${statusColor(s.status)} tracking-tight rounded-xl p-1 px-2 text-[0.75rem] truncate`}>{statusIcon(s.status)}</p>
                                     </span>
                                     <p className="text-[0.8rem] py-3 pl-4">{s.summary}</p>
                                 </span>
