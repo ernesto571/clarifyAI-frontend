@@ -173,7 +173,7 @@ export default function SavedDocs (){
                     {filteredDocs.length > ITEMS_PER_PAGE && (
                     <div className="flex items-center justify-between py-4 mt-2">
                         <p className="text-xs text-gray-400">
-                        Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredDocs.length)} of {filteredDocs.length} properties
+                        Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredDocs.length)} of {filteredDocs.length} documents
                         </p>
                         <div className="flex items-center gap-1 font-semibold">
                         {/* Prev */}

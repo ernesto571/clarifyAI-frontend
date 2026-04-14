@@ -86,7 +86,7 @@ export default function History () {
                             <p className="text-gray-400 text-sm font-satoshi pt-1">Every document you've analyzed — searchable and sortable.</p>
                         </span>
 
-                        <span className="flex md:gap-2 lg:gap-4">
+                        <span className="flex gap-4">
                             <input type="text" className="pl-3  lg:pr-10 py-2 lg:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-gray-900 transform text-sm text-gray-700" placeholder="🔍  Search documents..." />
 
                             <button onClick={() => (navigate("/dashboard"))} className="bg-tet text-primary rounded-lg font-semibold text-sm px-3  lg:px-5 hover:-translate-y-[1px] transform truncate">+  Analyze New</button>
@@ -266,7 +266,7 @@ export default function History () {
                     {filteredHistory.length > ITEMS_PER_PAGE && (
                     <div className="flex items-center justify-between py-4 mt-2">
                         <p className="text-xs text-gray-400">
-                        Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredHistory.length)} of {filteredHistory.length} properties
+                        Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredHistory.length)} of {filteredHistory.length} documents
                         </p>
                         <div className="flex items-center gap-1 font-semibold">
                         {/* Prev */}
