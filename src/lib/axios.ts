@@ -3,8 +3,8 @@ import axiosLib from "axios";
 const axios = axiosLib.create({
   baseURL: import.meta.env.DEV
     ? "http://localhost:3001/api"
-    : import.meta.env.VITE_BACKEND_URL,
-  withCredentials: true, // ← sends cookies automatically with every request
+    : `${import.meta.env.VITE_BACKEND_URL}/api`,
+  withCredentials: true,
 });
 
 axios.interceptors.request.use((config) => {
