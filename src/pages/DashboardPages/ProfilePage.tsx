@@ -60,15 +60,15 @@ export default function ProfilePage (){
         }
     }
 
-    const handleDeleteAccount = async () => {
-        const confirmed = window.confirm("Are you sure? This action is permanent and cannot be undone.");
-        if (!confirmed) return;
-        try {
-            await deleteAccount();
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    // const handleDeleteAccount = async () => {
+    //     const confirmed = window.confirm("Are you sure? This action is permanent and cannot be undone.");
+    //     if (!confirmed) return;
+    //     try {
+    //         await deleteAccount();
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     useEffect ( () => {
         if (profile === null){
