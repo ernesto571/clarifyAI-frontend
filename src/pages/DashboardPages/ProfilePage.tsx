@@ -20,7 +20,7 @@ const bar = " px-2 py-1 text-sm  font-semibold rounded-xl "
 export default function ProfilePage (){
     const navigate = useNavigate()
     const { logout } = useAuthStore()
-    const { profile, deleteAccount, profileLoading, fetchProfile } = useProfileStore()
+    const { profile, profileLoading, fetchProfile } = useProfileStore()
     const { history, fetchHistory } = useHistoryStore()
     const { documents, fetchDocs } = useDocStore()
 
