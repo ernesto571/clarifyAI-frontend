@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import axios from "../lib/axios"
 import { create } from "zustand";
 interface Profile {
@@ -16,12 +17,14 @@ interface ProfileState {
     profile: Profile | null;
     profileLoading: boolean;
     fetchProfile: () => Promise<void>;
+    deleteAccount: () => Promise<void>;
     clearProfile: () => void;
 }
 export const useProfileStore = create<ProfileState>((set) => ({
     profile: null,
     profileLoading: false,
     clearProfile: () => set({ profile: null, profileLoading: false }),
+
     fetchProfile: async () => {
         console.log("📡 fetchProfile: sending request...");
         set({ profileLoading: true });
@@ -55,4 +58,23 @@ export const useProfileStore = create<ProfileState>((set) => ({
             throw err;
         }
     },
+
+    deleteAccount: async () => {
+        console.log("📡 deleteAccount: sending request...");
+        set({ profileLoading: true });
+        try {
+            const res = await axios.delete("/user/delete");
+            console.log("✅ Account deleted", res.data.deletedUser);
+            set({ profile: null, profileLoading: false });
+            window.location.href = "/";
+        } catch (err: any) {
+            console.error("🔴 deleteAccount failed:", {
+                status: err.response?.status,
+                data: err.response?.data,
+                message: err.message,
+            });
+            set({ profileLoading: false });
+            toast.error("Failed to delete account.");
+        }
+    }
 }))

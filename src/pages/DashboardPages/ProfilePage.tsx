@@ -20,7 +20,7 @@ const bar = " px-2 py-1 text-sm  font-semibold rounded-xl "
 export default function ProfilePage (){
     const navigate = useNavigate()
     const { logout } = useAuthStore()
-    const { profile, profileLoading, fetchProfile } = useProfileStore()
+    const { profile, deleteAccount, profileLoading, fetchProfile } = useProfileStore()
     const { history, fetchHistory } = useHistoryStore()
     const { documents, fetchDocs } = useDocStore()
 
@@ -45,7 +45,7 @@ export default function ProfilePage (){
     const security = [
         { title:"Active Sessions" , value:profile?.active_sessions  },
         { title:"Two-Factor Auth" , value:"Not Enabled"  },
-        { title:"Last Login" , value: formatDate(profile?.last_login ) },
+        { title:"Last Login" , value: formatDate(profile?.last_login) },
         { title:"Sign-in Method" , value:profile?.provider  },
         { title:"Auth Provider" , value:"Better Auth"  }
     ]
@@ -57,6 +57,16 @@ export default function ProfilePage (){
              console.error(error)
         } finally {
          navigate("/")
+        }
+    }
+
+    const handleDeleteAccount = async () => {
+        const confirmed = window.confirm("Are you sure? This action is permanent and cannot be undone.");
+        if (!confirmed) return;
+        try {
+            await deleteAccount();
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -154,6 +164,21 @@ export default function ProfilePage (){
                                     </div>
                                 )) }
                                 
+                            </div>
+                        </section>
+
+                        {/* security */}
+                        <section className="mt-10 ">
+                            <div className="border bg-red rounded-2xl">
+                                <h1 className="text-red  font-semibold py-4 px-4 flex items-center " >⚠️ Danger Zone</h1>
+                                <span className="border-t border-[#f7bbc8] bg-[#f5e9e9] px-4 py-3 grid gap-3 md:flex items-center justify-between">
+                                    <div className="grid gap-1">
+                                        <h4 className="text-gray-900 font-semibold">Delete Account</h4>
+                                        <p className="text-gray-500 text-sm">Permanently remove your account and all data</p>
+                                    </div>
+
+                                    <button  className="bg-red text-red px-3 py-2 rounded-lg hover:-translate-y-[1px] font-semibold text-[0.9rem]" >Delete Account</button>
+                                </span>
                             </div>
                         </section>
                     </div>

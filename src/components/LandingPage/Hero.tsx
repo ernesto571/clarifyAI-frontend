@@ -60,28 +60,31 @@ export default function Hero(){
     }, [])
 
     return(
-        <section className="bg-primary h-[80vh] lg:h-screen">
+        <section className="bg-primary lg:h-screen">
             <div className="grid  lg:grid-cols-2">
-                <section className="mt-[5rem] w-[90%] md:w-[80%] mx-auto font-cabinet font-bold">
-                    <div className="flex gap-2 bg-black text-primary py-2 justify-center text-[0.8rem] tracking-wide max-w-[65%]  md:max-w-[38%] rounded-md"> 
+                <section className="mt-[4rem] md:mt-[5rem] mb-[4rem] lg:mb-0  w-[90%] md:w-[70%] lg:w-[80%]  mx-auto font-cabinet font-bold">
+                    <div className="inline-flex gap-2 bg-black text-primary py-2 justify-center text-[0.8rem] tracking-wide px-3 md:px-5  rounded-md"> 
                         <img className="w-[15px] flex items-center " src="https://res.cloudinary.com/dsljbxkfy/image/upload/v1775552386/diamond-mark-3-svgrepo-com_dgvrj1.svg" alt="icon" />
                         <p>100% FREE • AI-POWERED</p>
                     </div>
                     <div className="mt-3 font-bold primary-text">
-                        <h1 id="hero-title">Read</h1>
-                        <span id="text-1" className="bg-sec -rotate-2 -mt-[12px]  md:-mt-[25px] h-[60px] lg:h-[80px] rounded-md items-center  transform lg:max-w-[60%] md:max-w-[44%] max-w-[60%]  flex justify-center text-white bg-[#2d6bff]">
-                            <h1  >smarter.</h1>
+                        <span className="md:flex lg:block gap-4">
+                            <h1 id="hero-title" className="h-[55px] md:h-full lg:h-[80px]">Read</h1>
+                            <span id="text-1" className="bg-sec -rotate-2 rounded-md  inline-flex px-3 h-[60px] md:h-[80px] items-center  text-white bg-[#2d6bff]">
+                                <h1  >smarter.</h1>
+                            </span>
                         </span>
+                        
 
-                        <span className="flex gap-4">
+                        <span className="flex gap-4 md:-mt-2">
                             <h1 id="hero-title-2" className="-mt-[5px] md:-mt-[10px]" >Sign</h1>
-                            <span id="text-2" className="rotate-2 h-[60px]  lg:h-[80px] mt-[4px] rounded-md items-center px-4  transform max-w-[60%] flex justify-center text-white bg-[#2d6bff]">
+                            <span id="text-2" className="rotate-3 px-3 mt-[4px] rounded-md md:h-[80px] items-center inline-flex justify-center text-white bg-[#2d6bff]">
                                 <h1 >safer.</h1>
                             </span>
                         </span>
                     </div>
 
-                    <p id="hero-subtitle" className="font-satoshi text-[#8a7220] font-semibold md:text-[1.1rem] md:w-[80%] mt-3">Paste or upload any contract, legal doc or terms of service — get a plain English breakdown in seconds. </p>
+                    <p id="hero-subtitle" className="font-satoshi text-[#8a7220] font-semibold md:text-[1.1rem] lg:w-[80%] mt-3">Paste or upload any contract, legal doc or terms of service — get a plain English breakdown in seconds. </p>
 
                     {/* buttons */}
                     <div id="hero-btn" className="mt-6 flex gap-6 ">
